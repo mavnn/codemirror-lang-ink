@@ -1,5 +1,6 @@
 # Ink language support for CodeMirror
 
+- [npm package](https://www.npmjs.com/package/@mavnn/codemirror-lang-ink)
 - [CodeMirror](https://codemirror.net/)
 - [Ink](https://www.inklestudios.com/ink/)
 
@@ -13,7 +14,7 @@ This code is released under an
 
 ```javascript
 import {EditorView, basicSetup} from "codemirror"
-import {InkLanguageSupport} from "@codemirror/lang-markdown"
+import {InkLanguageSupport} from "@mavnn/codemirror-lang-ink"
 
 const view = new EditorView({
   parent: document.body,

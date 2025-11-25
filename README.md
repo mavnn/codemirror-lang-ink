@@ -21,7 +21,7 @@ import {InkLanguageSupport} from "@mavnn/codemirror-lang-ink"
 const view = new EditorView({
   parent: document.body,
   doc: `Once upon a time...`,
-  extensions: [basicSetup, InkSupport]
+  extensions: [basicSetup, InkLanguageSupport]
 })
 ```
 

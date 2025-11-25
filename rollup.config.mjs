@@ -5,6 +5,6 @@ import {lezer} from "@lezer/generator/rollup"
 export default {
   input: 'src/index.ts',
   output: { file: './dist/index.js', format: 'cjs' },
-  plugins: [lezer(), nodeResolve(), typescript()],
+  plugins: [lezer(), nodeResolve(), typescript({ declaration: true, outDir: "./dist" })],
   external: (id) => /node_modules\//.test(id)
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mavnn/codemirror-lang-ink",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Ink language support for the CodeMirror code editor",
   "scripts": {
     "pre-gen": "mkdir -p src/generated && lezer-generator src/syntax.grammar -o src/generated/parser",
@@ -17,10 +17,10 @@
     "url": "http://bonfire.mavnn.eu/@mavnn"
   },
   "type": "module",
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "exports": {
     "import": "./dist/index.js",
-    "require": "./dist/index.cjs"
+    "require": "./dist/index.js"
   },
   "types": "dist/src/index.d.ts",
   "module": "dist/index.js",

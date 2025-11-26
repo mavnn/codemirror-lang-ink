@@ -5,6 +5,7 @@
   pathComponent @left,
   list @left,
   parens @left,
+  mod @left,
   divide @left,
   multiply @left,
   subtract @left,
@@ -35,6 +36,7 @@ line {
   knotOrFunction |
   Stitch |
   Gather |
+  ThreadLine |
   conditionalLine |
   BlockSequence |
   emptyLine
@@ -122,7 +124,7 @@ choiceTail {
 }
 preweaveChoiceContent { ((choiceContentWord | contentEscape) choiceContent*) }
 BracketedName { openBracketedName identifier ")" }
-WeaveBracket { openWeaveBracket choiceContent+ ChoiceTag* "]" }
+WeaveBracket { openWeaveBracket choiceContent* ChoiceTag* "]" }
 choiceContent {
   choiceContentWord | contentEscape | inline
 }
@@ -143,14 +145,14 @@ Conditional {
    "{" ~bracket inlineConditionalOpen conditionMarker? expression ":" content+ Divert? "}"
 }
 BlockConditional {
-  "{" ~bracket blockOpen conditionMarker? expression ":" ContentLine blockTail |
+  "{" ~bracket blockOpen conditionMarker? expression ":" (ContentLine | emptyLine) blockTail |
   "{" ~bracket endOfLine blockTail
 }
 blockTail {
   (BlockConditionCase | ~case ContentLine | ~case choice | ~case VariableAssignment)*
   "}"
 }
-BlockConditionCase { caseOpener expression ":" (ContentLine | endOfLine) }
+BlockConditionCase { caseOpener expression ":" (ContentLine | emptyLine) }
 caseOpener[@dynamicPrecedence=1] { ~case opener<"-"> }
 conditionalLine { !keyword BlockConditional endOfLine }
 
@@ -174,6 +176,9 @@ SequenceContent { content* Divert? }
 Tag { "#" openTagContent+  }
 ChoiceTag { "#" (choiceTagContent | choiceTagNotDivert)+ }
 
+// Threads
+ThreadLine { !keyword threadArrow DivertTarget endOfLine }
+
 // Logic
 Name { !parens identifier }
 
@@ -182,6 +187,7 @@ expression[@isGroup=Expression] {
       ExpressionAndOr { expression !andOr andOrOp expression } |
       ExpressionComparison { expression !comparison comparisonOp expression } |
       ExpressionPresence { expression !presence presenceOp expression } |
+      ExpressionMod { expression !add ("%" | "mod") expression } |
       ExpressionAdd { expression !add "+" expression } |
       ExpressionSubtract { expression !subtract "-" expression } |
       ExpressionMultiply { expression !multiply "*" expression } |
@@ -288,6 +294,7 @@ endOfLine { eol | LineComment }
   identifier { identifierStartChar identifierChar* }
 
   DivertArrow { "->" "->"? }
+  threadArrow { "<-" }
   blockCommentStart { "/*" }
   lineCommentStart { "//" }
   SequenceTypeMarker { "~" | "&" | "!" }
@@ -320,4 +327,5 @@ endOfLine { eol | LineComment }
   @precedence { "(", choiceContentWord }
   @precedence { choiceTagContent, spaces }
   @precedence { onceOnlyChoiceMarker, repeatingChoiceMarker, contentWord }
+  @precedence { threadArrow, contentWord }
 }

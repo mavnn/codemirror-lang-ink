@@ -1,1 +1,10 @@
-Script(OnceOnlyChoice( Divert(DivertArrow, DivertTarget(Path))), OnceOnlyChoice(WeaveBracket), ContentLine, Gather(BracketedName, ContentLine))
+Script(
+  OnceOnlyChoice(
+    Divert(DivertArrow, DivertTarget(Path))
+  ),
+  OnceOnlyChoice(WeaveBracket),
+  ContentLine,
+  Gather(BracketedName, ContentLine),
+  OnceOnlyChoice(WeaveBracket,Divert(DivertArrow,DivertTarget(Path))),
+  OnceOnlyChoice(WeaveBracket,Divert(DivertArrow,DivertTarget(Path)))
+)

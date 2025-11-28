@@ -88,10 +88,10 @@ ConstDeclaration {
   ~opening !keyword opener<"CONST"> Name "=" (literal | ExpressionList | ExpressionDivertTarget) endOfLine
 }
 ListDeclaration {
-  ~opening !keyword opener<"LIST"> Name "=" ListDefinition endOfLine
+  ~opening !keyword opener<"LIST"> Name "=" endOfLine? ListDefinition endOfLine
 }
 ListDefinition {
-  commaSep<(Name | SelectedName)>
+  (Name | SelectedName) ("," endOfLine? (Name | SelectedName))*
 }
 SelectedName {
   "(" identifier ")"

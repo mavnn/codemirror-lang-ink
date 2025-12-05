@@ -12,6 +12,9 @@ export const checkBrace = new ExternalTokenizer((input) => {
         while (peeked !== -1) {
                 if (peeked === braceL) {
                         nestedOpeningCount++
+
+                        ahead++
+                        peeked = input.peek(ahead)
                 } else if (peeked === pipe) {
                         input.acceptToken(inlineSequenceOpen)
                         return
@@ -21,6 +24,8 @@ export const checkBrace = new ExternalTokenizer((input) => {
                                 return
                         } else {
                                 nestedOpeningCount--
+                                ahead++
+                                peeked = input.peek(ahead)
                         }
                 } else if (peeked === colon) {
                         ahead++
@@ -28,6 +33,8 @@ export const checkBrace = new ExternalTokenizer((input) => {
                         while (peeked !== -1) {
                                 if (peeked === braceL) {
                                         nestedOpeningCount++
+                                        ahead++
+                                        peeked = input.peek(ahead)
                                 } else if (peeked === newLine) {
                                         input.acceptToken(blockOpen)
                                         return

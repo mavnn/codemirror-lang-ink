@@ -1,3 +1,5 @@
+@dialects { visualink }
+
 @top Script { line* }
 
 @precedence {
@@ -31,6 +33,7 @@ line {
   VariableDeclaration |
   ConstDeclaration |
   ListDeclaration |
+  StackDeclaration |
   VariableAssignment |
   choice |
   knotOrFunction |
@@ -95,6 +98,10 @@ ListDefinition {
 }
 SelectedName {
   "(" identifier ")"
+}
+// Provided by plugins in the VisualInk environment, not part of the Ink standard
+StackDeclaration {
+  ~opening !keyword visualinkOpener<"STACK"> Name int endOfLine
 }
 
 // Assignments
@@ -260,6 +267,7 @@ pipeSep1<content> {
 }
 kw<word> { @specialize[@name={word}]<identifier, word> }
 opener<word> { @extend<contentWord, word> }
+visualinkOpener<word> { @extend[@dialect=visualink]<contentWord, word> }
 endOfLine { eol | LineComment }
 
 @tokens {

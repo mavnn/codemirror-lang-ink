@@ -22,7 +22,8 @@ for (let file of fs.readdirSync(caseDir)) {
   it("Ink file: " + name, () => {
     const ink = fs.readFileSync(path.join(caseDir, file), "utf8")
     const expected = fs.readFileSync(path.join(caseDir, file + ".expect"), "utf8")
-    const parsed = InkLanguage.parser.parse(ink)
+    const withDialect = InkLanguage.configure({dialect: "visualink"})
+    const parsed = withDialect.parser.parse(ink)
     testTree(parsed, expected)
   })
 }

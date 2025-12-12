@@ -1,1 +1,1 @@
-Script(StackDeclaration(Name,Int),StackDeclaration(Name,Int),ContentLine)
+Script(StackDeclaration(Name,Int,Bool(false)),StackDeclaration(Name,Int,String),ContentLine)

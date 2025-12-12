@@ -1,5 +1,5 @@
-STACK cards 6
+STACK cards 6 false
 
-STACK otherstuff 22
+STACK otherstuff 22 "banana"
 
 Some content

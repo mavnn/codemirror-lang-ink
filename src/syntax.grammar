@@ -101,7 +101,7 @@ SelectedName {
 }
 // Provided by plugins in the VisualInk environment, not part of the Ink standard
 StackDeclaration[@dynamicPrecedence=1] {
-  ~opening !keyword visualinkOpener<"STACK"> Name Int endOfLine
+  ~opening !keyword visualinkOpener<"STACK"> Name Int (literal | ExpressionList | ExpressionDivertTarget) endOfLine
 }
 
 // Assignments

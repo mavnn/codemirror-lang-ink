@@ -1,1 +1,1 @@
-Script(Knot(Name),ContentLine,ThreadLine(DivertTarget(Path)),ThreadLine(DivertTarget(Path)))
+Script(Knot(KnotName,ContentLine,ThreadLine(DivertTarget(Path)),ThreadLine(DivertTarget(Path))))

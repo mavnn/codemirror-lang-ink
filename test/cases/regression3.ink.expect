@@ -1,1 +1,1 @@
-Script(Knot(Name),ContentLine,VariableAssignment(Name,Adjust(ExpressionList(ListMember,ListMember))),ContentLine(Divert(DivertArrow)),Knot(Name),ContentLine,ContentLine(Divert(DivertArrow)))
+Script(Knot(KnotName,ContentLine,VariableAssignment(Name,Adjust(ExpressionList(ListMember,ListMember))),ContentLine(Divert(DivertArrow))),Knot(KnotName,ContentLine,ContentLine(Divert(DivertArrow))))

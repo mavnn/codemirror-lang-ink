@@ -1,25 +1,16 @@
 import { parser } from "./syntax.grammar"
 import { LRLanguage, LanguageSupport, foldNodeProp } from "@codemirror/language"
 import { styleTags, tags as t } from "@lezer/highlight"
-import { SyntaxNode } from "@lezer/common"
-import { EditorState } from "@codemirror/state"
-
-function findKnotEnd(knotNode: SyntaxNode, state: EditorState) {
-        let last: SyntaxNode = knotNode
-        while (true) {
-                let next = last.nextSibling
-                if (!next) { break }
-                last = next
-                if (last.type.is("Knot")) { break }
-        }
-        return state.doc.lineAt(last.from).from - 1
-}
 
 export const InkLanguage = LRLanguage.define(
         {
                 parser: parser.configure({
                         props: [
-                                foldNodeProp.add({ Knot: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: findKnotEnd(tree.node, state) }) }),
+                                foldNodeProp.add({
+                                        Knot: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
+                                        Function: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
+                                        Stitch: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
+                                }),
                                 styleTags({
                                         BlockComment: t.blockComment,
                                         AuthorWarning: t.comment,
@@ -27,6 +18,8 @@ export const InkLanguage = LRLanguage.define(
                                         Glue: t.controlOperator,
                                         not: t.logicOperator,
                                         Name: t.literal,
+                                        StitchName: t.literal,
+                                        KnotName: t.literal,
                                         ListMember: t.literal,
                                         DivertArrow: t.controlOperator,
                                         Path: t.literal,
@@ -71,7 +64,7 @@ export const InkLanguage = LRLanguage.define(
                 }), languageData: { commentTokens: { line: "//", block: { open: "/*", close: "*/" } } }
         });
 
-export const InkLanguageSupport = (config: {dialect?: "visualink"}) => {
-  const configured = InkLanguage.configure(config)
-  return new LanguageSupport(configured)
+export const InkLanguageSupport = (config: { dialect?: "visualink" }) => {
+        const configured = InkLanguage.configure(config)
+        return new LanguageSupport(configured)
 }

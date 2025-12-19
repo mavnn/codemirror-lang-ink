@@ -1,6 +1,6 @@
 @dialects { visualink }
 
-@top Script { line* }
+@top Script { context* }
 
 @precedence {
   restrictedPath @left,
@@ -26,6 +26,11 @@
   content @left
 }
 
+context {
+  line |
+  knotOrFunction
+}
+
 line {
   AuthorWarning |
   ContentLine |
@@ -36,8 +41,6 @@ line {
   StackDeclaration |
   VariableAssignment |
   choice |
-  knotOrFunction |
-  Stitch |
   Gather |
   ThreadLine |
   conditionalLine |
@@ -46,6 +49,7 @@ line {
 }
 
 @skip { (spaces | BlockComment) }
+@context trackKnotName from "./context"
 
 ContentLine { ~opening !content (Glue? content* ((Glue? | Tag*) | (Tag* | Glue?)) Divert?) endOfLine }
 AuthorWarning { ~opening !keyword todo notEol+ eol }
@@ -58,15 +62,22 @@ content {
 }
 
 // Knots and Stitches
+@external tokens endOfKnot from "./tokens" {
+  endOfKnotMarker,
+  endOfStitchMarker
+}
+
 knotOrFunction {
   Knot | Function
 }
-Function { knotMarker ~functionOrKnot kw<"function"> knotOrFunctionTail }
-Knot { knotMarker ~functionOrKnot knotOrFunctionTail }
-knotOrFunctionTail { Name KnotArguments? knotMarker? endOfLine }
+Function { knotMarker ~functionOrKnot kw<"function"> knotOrFunctionTail line* endOfKnotMarker }
+Knot { knotMarker ~functionOrKnot knotOrFunctionTail (line | Stitch)* endOfKnotMarker }
+KnotName { !parens identifier }
+knotOrFunctionTail { KnotName KnotArguments? knotMarker? endOfLine }
 KnotArguments { "(" commaSep<knotArgument> ")" }
 knotArgument { kw<"ref">? Name }
-Stitch { ~opening stitchMarker Name KnotArguments? stitchMarker? endOfLine }
+StitchName { !parens identifier }
+Stitch { ~opening stitchMarker StitchName KnotArguments? stitchMarker? endOfLine line* (endOfKnotMarker | endOfStitchMarker) }
 Gather { ~opening (!keyword gatherMarker) BracketedName? ContentLine }
 
 // To avoid issues with dashes being "mis-tokenized" midline, we need

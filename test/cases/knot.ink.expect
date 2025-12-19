@@ -1,7 +1,6 @@
 Script(
-  Knot(Name),
-  Knot(Name),
-  Knot(Name, KnotArguments(ref, Name, Name)),
-  Stitch(Name),
-  Function(function,Name,KnotArguments(Name))
+  Knot(KnotName),
+  Knot(KnotName, ContentLine),
+  Knot(KnotName, KnotArguments(ref, Name, Name), Stitch(StitchName)),
+  Function(function,KnotName,KnotArguments(Name))
 )

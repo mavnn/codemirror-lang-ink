@@ -1,9 +1,22 @@
 import { ExternalTokenizer } from "@lezer/lr"
 
 // @ts-ignore-next "The terms file is generated during the grammar build process"
-import { inlineConditionalOpen, inlineSequenceOpen, blockOpen } from "./generated/parser.terms"
+import { inlineConditionalOpen, inlineSequenceOpen, blockOpen, endOfKnotMarker, endOfStitchMarker } from "./generated/parser.terms"
 
-const pipe = 124, colon = 58, braceL = 123, braceR = 125, newLine = 10, carriageReturn = 13
+const pipe = 124, colon = 58, braceL = 123, braceR = 125, newLine = 10, equal = 61
+
+export const endOfKnot = new ExternalTokenizer((input, stack) => {
+  const doubleEquals = input.peek(0) == equal && input.peek(1) == equal
+  const endOfFile = input.peek(0) == -1
+  if(stack.context.inKnot && (doubleEquals || endOfFile)) {
+    input.acceptToken(endOfKnotMarker)
+    return
+  }
+  if(stack.context.inStitch && input.peek(0) == equal) {
+    input.acceptToken(endOfStitchMarker)
+    return
+  }
+}, {contextual: true})
 
 export const checkBrace = new ExternalTokenizer((input) => {
         let ahead = 0

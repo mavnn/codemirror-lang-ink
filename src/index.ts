@@ -7,9 +7,9 @@ export const InkLanguage = LRLanguage.define(
                 parser: parser.configure({
                         props: [
                                 foldNodeProp.add({
-                                        Knot: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
-                                        Function: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
-                                        Stitch: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to).from }),
+                                        Knot: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to - 1).to }),
+                                        Function: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to - 1).to }),
+                                        Stitch: (tree, state) => ({ from: state.doc.lineAt(tree.from).to, to: state.doc.lineAt(tree.to - 1).to }),
                                 }),
                                 styleTags({
                                         BlockComment: t.blockComment,

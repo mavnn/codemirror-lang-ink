@@ -1,6 +1,6 @@
 {
   "name": "@mavnn/codemirror-lang-ink",
-  "version": "0.8.0",
+  "version": "0.9.15-rc0",
   "description": "Ink language support for the CodeMirror code editor",
   "scripts": {
     "pre-gen": "mkdir -p src/generated && lezer-generator src/syntax.grammar -o src/generated/parser",

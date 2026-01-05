@@ -38,6 +38,7 @@ export const InkLanguage = LRLanguage.define(
                                         ConstDeclaration: t.keyword,
                                         ListDeclaration: t.keyword,
                                         ListDefinition: t.keyword,
+                                        StackExpression: t.keyword,
                                         StackDeclaration: t.keyword,
                                         SelectedName: t.literal,
                                         VariableAssignment: t.keyword,

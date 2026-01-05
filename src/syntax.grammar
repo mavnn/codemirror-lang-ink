@@ -96,10 +96,10 @@ gatherMarker {
 
 // Declarations
 VariableDeclaration {
-  ~opening !keyword opener<"VAR"> Name "=" (literal | ExpressionList | ExpressionDivertTarget)  endOfLine
+  ~opening !keyword opener<"VAR"> Name "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack)  endOfLine
 }
 ConstDeclaration {
-  ~opening !keyword opener<"CONST"> Name "=" (literal | ExpressionList | ExpressionDivertTarget) endOfLine
+  ~opening !keyword opener<"CONST"> Name "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack) endOfLine
 }
 ListDeclaration {
   ~opening !keyword opener<"LIST"> Name "=" endOfLine? ListDefinition endOfLine
@@ -217,11 +217,13 @@ expression[@isGroup=Expression] {
     ExpressionVariableReference { !variableName Name } |
     ExpressionList |
     ExpressionDivertTarget |
+    ExpressionStack |
     literal
 }
 
 ExpressionDivertTarget { DivertArrow DivertTarget }
 ExpressionList { !list "(" commaSep<ListMember> ")" } 
+ExpressionStack { !list "[" commaSep<expression> "]" }
 
 literal[@isGroup=Literal] {
   Bool |

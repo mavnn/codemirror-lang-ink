@@ -117,10 +117,16 @@ StackDeclaration[@dynamicPrecedence=1] {
 
 // Assignments
 VariableAssignment {
-  !keyword assignmentMarker ("temp" | "return")? Name (variableAssignValue | Adjust | IncDec) endOfLine
+  !keyword assignmentMarker (Temp | Return)? Name (variableAssignValue | Adjust | IncDec) endOfLine
+}
+Temp {
+  "temp"
+}
+Return {
+  "return"
 }
 variableAssignValue {
-  "=" (literal | ExpressionList | ExpressionDivertTarget | Name)
+  "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack | Name)
 }
 Adjust {
   ("+=" | "-=") (literal | Name | ExpressionList)

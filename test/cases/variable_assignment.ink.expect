@@ -1,5 +1,6 @@
 Script(
-  VariableAssignment(Name, Name),
-  VariableAssignment(Name, IncDec),
+  VariableAssignment(Name,Name),
+  VariableAssignment(Temp,Name,ExpressionStack(ExpressionVariableReference(Name),ExpressionVariableReference(Name))),
+  VariableAssignment(Name,IncDec),
   ContentLine(Tag)
 )

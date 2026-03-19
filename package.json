@@ -20,7 +20,8 @@
   "main": "dist/index.js",
   "exports": {
     "import": "./dist/index.js",
-    "require": "./dist/index.js"
+    "require": "./dist/index.js",
+    "types": "./dist/src/index.d.ts"
   },
   "types": "dist/src/index.d.ts",
   "module": "dist/index.js",

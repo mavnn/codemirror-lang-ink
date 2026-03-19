@@ -76,7 +76,7 @@ export const InkLanguage = LRLanguage.define(
                 }), languageData: { commentTokens: { line: "//", block: { open: "/*", close: "*/" } } }
         });
 
-export const InkLanguageSupport = (config: { dialect?: "visualink" }) => {
+export const InkLanguageSupport = (config: { dialect?: "visualink" } = {}) => {
         const configured = InkLanguage.configure(config)
         return new LanguageSupport(configured)
 }

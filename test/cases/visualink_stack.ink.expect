@@ -4,5 +4,5 @@ Script(
   StackDeclaration(Name,Int,String),
   ContentLine,
   LineComment,
-  VariableDeclaration(Name, ExpressionStack(Int,String))
+  VariableDeclaration(Name, Stack(Int,String))
 )

@@ -96,10 +96,10 @@ gatherMarker {
 
 // Declarations
 VariableDeclaration {
-  ~opening !keyword opener<"VAR"> Name "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack)  endOfLine
+  ~opening !keyword opener<"VAR"> Name "=" (literal | List | ExpressionDivertTarget | Stack)  endOfLine
 }
 ConstDeclaration {
-  ~opening !keyword opener<"CONST"> Name "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack) endOfLine
+  ~opening !keyword opener<"CONST"> Name "=" (literal | List | ExpressionDivertTarget | Stack) endOfLine
 }
 ListDeclaration {
   ~opening !keyword opener<"LIST"> Name "=" endOfLine? ListDefinition endOfLine
@@ -112,7 +112,7 @@ SelectedName {
 }
 // Provided by plugins in the VisualInk environment, not part of the Ink standard
 StackDeclaration[@dynamicPrecedence=1] {
-  ~opening !keyword visualinkOpener<"STACK"> Name Int (literal | ExpressionList | ExpressionDivertTarget) endOfLine
+  ~opening !keyword visualinkOpener<"STACK"> Name Int (literal | List | ExpressionDivertTarget) endOfLine
 }
 
 // Assignments
@@ -126,10 +126,10 @@ Return {
   "return"
 }
 variableAssignValue {
-  "=" (literal | ExpressionList | ExpressionDivertTarget | ExpressionStack | Name)
+  "=" expression
 }
 Adjust {
-  ("+=" | "-=") (literal | Name | ExpressionList)
+  ("+=" | "-=") (literal | Name | List)
 }
 IncDec {
   "++" | "--"
@@ -220,16 +220,16 @@ expression[@isGroup=Expression] {
     ExpressionParen { !parens "(" expression ")" } |
     ExpressionNot { kw<"not"> expression } |
     ExpressionFunctionCall { !functionCall Name "(" commaSep<expression> ")" } |
-    ExpressionVariableReference { !variableName Name } |
-    ExpressionList |
+    expressionVariableReference { !variableName Name } |
+    List |
     ExpressionDivertTarget |
-    ExpressionStack |
+    Stack |
     literal
 }
 
 ExpressionDivertTarget { DivertArrow DivertTarget }
-ExpressionList { !list "(" commaSep<ListMember> ")" } 
-ExpressionStack { !list "[" commaSep<expression> "]" }
+List { !list "(" commaSep<ListMember> ")" } 
+Stack { !list "[" commaSep<expression> "]" }
 
 literal[@isGroup=Literal] {
   Bool |

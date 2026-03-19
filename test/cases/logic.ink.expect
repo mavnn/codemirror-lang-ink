@@ -1,15 +1,15 @@
 Script(
   BlockConditional(
-    ExpressionVariableReference(Name),
+    Name,
     ContentLine,
-    BlockConditionCase(ExpressionVariableReference(Name)),
+    BlockConditionCase(Name),
     ContentLine
   ),
   ContentLine,
   BlockConditional(
     BlockConditionCase(ExpressionComparison(ExpressionMod(Int,Int),Int)),
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
-    BlockConditionCase(ExpressionVariableReference(Name)),
+    BlockConditionCase(Name),
     ContentLine
   )
 )

@@ -1,17 +1,17 @@
 Script(
   BlockConditional(
-    ExpressionVariableReference(Name),
+    Name,
     ContentLine,
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
-    BlockConditionCase(ExpressionVariableReference(Name)),
+    BlockConditionCase(Name),
     ContentLine
   ),
   ContentLine,
   BlockConditional(
-    BlockConditionCase(ExpressionVariableReference(Name)),
+    BlockConditionCase(Name),
     ContentLine,
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
-    BlockConditionCase(ExpressionVariableReference(Name)),
+    BlockConditionCase(Name),
     ContentLine
   )
 )

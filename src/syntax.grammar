@@ -56,6 +56,9 @@ AuthorWarning { ~opening !keyword todo notEol+ eol }
 todo[@dynamicPrecedence=1] { @extend<contentWord, "TODO:"> }
 Include { ~opening !keyword opener<"INCLUDE"> notEol+ eol }
 emptyLine[@dynamicPrecedence=2] { ~opening !emptyLine endOfLine }
+openBracketedChoiceName[@dynamicPrecedence=1] { !parens @extend<choiceContentWord, "("> }
+openBracketedGatherName[@dynamicPrecedence=1] { !parens @extend<contentWord, "("> }
+openWeaveBracket[@dynamicPrecedence=1] { !parens @extend<choiceContentWord, "["> }
 
 content {
   contentWord | contentEscape | inline
@@ -78,7 +81,8 @@ KnotArguments { "(" commaSep<knotArgument> ")" }
 knotArgument { kw<"ref">? Name }
 StitchName { !parens identifier }
 Stitch { ~opening stitchMarker StitchName KnotArguments? stitchMarker? endOfLine line* (endOfKnotMarker | endOfStitchMarker) }
-Gather { ~opening (!keyword gatherMarker) BracketedName? ContentLine }
+Gather { ~opening (!keyword gatherMarker) BracketedGatherName? ContentLine }
+BracketedGatherName { openBracketedGatherName identifier ")" }
 
 // To avoid issues with dashes being "mis-tokenized" midline, we need
 // the gather marker at the line start to be an extension of the broader
@@ -144,13 +148,18 @@ RepeatingChoice {
   repeatingChoiceMarker choiceTail
 }
 choiceTail {
-  BracketedName? (!condition ChoiceCondition)* preweaveChoiceContent? (WeaveBracket choiceContent*)? ChoiceTag* Divert? endOfLine
+  BracketedChoiceName? (!condition ChoiceCondition)* choiceContentStart ChoiceTag* Divert? endOfLine
 }
-preweaveChoiceContent { ((choiceContentWord | contentEscape) choiceContent*) }
-BracketedName { openBracketedName identifier ")" }
-WeaveBracket { openWeaveBracket choiceContent* ChoiceTag* "]" }
+choiceContentStart {
+  (PreweaveChoiceContent (WeaveBracket PostweaveChoiceContent?)?) | (WeaveBracket PostweaveChoiceContent?)
+}
+PreweaveChoiceContent { choiceContent (choiceContent | inline)* }
+PostweaveChoiceContent { (choiceContent | inline)+ }
+BracketedChoiceName { openBracketedChoiceName identifier ")" }
+WeaveBracket { openWeaveBracket WeaveContent ChoiceTag* "]" }
+WeaveContent { (choiceContent | inline)* }
 choiceContent {
-  choiceContentWord | contentEscape | inline
+  choiceContentWord | contentEscape
 }
 ChoiceCondition { "{" ~bracket expression "}" }
 
@@ -300,11 +309,11 @@ endOfLine { eol | LineComment }
   comparisonOp { "==" | "<" "="? | ">" "="? | "!=" }
   presenceOp { "?" | "has" "nt"? | "!?" | "^" }
   contentEscape { "\\" _ }
-  contentChar { ![\n\r \t{}#\\|]  }
-  contentWord { contentChar+ }
+  contentChar { ![\n\r \t{}#\\|\(]  }
+  contentWord { "(" | contentChar+ }
 
-  choiceContentChar { ![\n\r \t{}#\\|[\]] }
-  choiceContentWord { choiceContentChar+ }
+  choiceContentChar { ![\n\r \t{}#\\|[\](] }
+  choiceContentWord { "(" | "[" | choiceContentChar+ }
   choiceTagContent { ![\n\r#\[\]-] }
   choiceTagNotDivert { "-" ![>] }
 
@@ -330,12 +339,8 @@ endOfLine { eol | LineComment }
   assignmentMarker { "~" }
   knotMarker { "=" "="+ }
   stitchMarker { "=" }
-  openBracketedName { "(" }
-  openWeaveBracket { "[" }
 
   @precedence { knotMarker, stitchMarker, contentWord }
-  @precedence { openBracketedName, contentWord }
-  @precedence { openBracketedName, choiceContentWord }
   @precedence { DivertArrow, choiceTagContent }
   @precedence { float, int, identifier }
   @precedence { spaces, notEol }
@@ -351,7 +356,6 @@ endOfLine { eol | LineComment }
   @precedence { conditionMarker, choiceContentWord }
   @precedence { blockCommentStart, lineCommentStart, contentWord }
   @precedence { blockCommentStart, lineCommentStart, choiceContentWord }
-  @precedence { "(", choiceContentWord }
   @precedence { choiceTagContent, spaces }
   @precedence { onceOnlyChoiceMarker, repeatingChoiceMarker, contentWord }
   @precedence { threadArrow, contentWord }

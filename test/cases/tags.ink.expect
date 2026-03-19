@@ -1,1 +1,1 @@
-Script(ContentLine(Tag), ContentLine(Tag,Tag),ContentLine(Tag),OnceOnlyChoice(ChoiceTag, Divert(DivertArrow,DivertTarget(Path))))
+Script(ContentLine(Tag), ContentLine(Tag,Tag),ContentLine(Tag),OnceOnlyChoice(PreweaveChoiceContent, ChoiceTag, Divert(DivertArrow,DivertTarget(Path))))

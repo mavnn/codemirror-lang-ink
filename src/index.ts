@@ -16,6 +16,10 @@ export const InkLanguage = LRLanguage.define(
                                         AuthorWarning: t.comment,
                                         LineComment: t.comment,
                                         ContentLine: t.content,
+                                        PreweaveChoiceContent: t.content,
+                                        PostweaveChoiceContent: t.content,
+                                        WeaveContent: t.content,
+                                        SequenceContent: t.content,
                                         Glue: t.controlOperator,
                                         DivertArrow: t.controlOperator,
                                         OnceOnlyChoice: t.controlOperator,
@@ -69,8 +73,7 @@ export const InkLanguage = LRLanguage.define(
                                         ExpressionDivide: t.operator,
                                         ExpressionNot: t.logicOperator,
                                         ChoiceTag: t.labelName,
-                                        KnotArguments: t.bracket,
-                                        SequenceContent: t.content
+                                        KnotArguments: t.bracket
                                 })
                         ]
                 }), languageData: { commentTokens: { line: "//", block: { open: "/*", close: "*/" } } }

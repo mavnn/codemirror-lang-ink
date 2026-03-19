@@ -1,10 +1,11 @@
 Script(
   OnceOnlyChoice(
+    PreweaveChoiceContent,
     Divert(DivertArrow, DivertTarget(Path))
   ),
-  OnceOnlyChoice(WeaveBracket),
+  OnceOnlyChoice(WeaveBracket(WeaveContent)),
   ContentLine,
-  Gather(BracketedName, ContentLine),
-  OnceOnlyChoice(WeaveBracket,Divert(DivertArrow,DivertTarget(Path))),
-  OnceOnlyChoice(WeaveBracket,Divert(DivertArrow,DivertTarget(Path)))
+  Gather(BracketedGatherName, ContentLine),
+  OnceOnlyChoice(PreweaveChoiceContent, WeaveBracket(WeaveContent), PostweaveChoiceContent, Divert(DivertArrow,DivertTarget(Path))),
+  OnceOnlyChoice(PreweaveChoiceContent, WeaveBracket(WeaveContent), PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path)))
 )

@@ -1,7 +1,7 @@
 import { ExternalTokenizer } from "@lezer/lr"
 
 // @ts-ignore-next "The terms file is generated during the grammar build process"
-import { inlineConditionalOpen, inlineSequenceOpen, blockOpen, endOfKnotMarker, endOfStitchMarker } from "./generated/parser.terms"
+import { inlineConditionalOpen, inlineSequenceOpen, inlineDisplayVariableOpen, blockOpen, endOfKnotMarker, endOfStitchMarker } from "./generated/parser.terms"
 
 const pipe = 124, colon = 58, braceL = 123, braceR = 125, newLine = 10, equal = 61
 
@@ -33,7 +33,7 @@ export const checkBrace = new ExternalTokenizer((input) => {
                         return
                 } else if (peeked === braceR) {
                         if (nestedOpeningCount === 0) {
-                                input.acceptToken(inlineConditionalOpen)
+                                input.acceptToken(inlineDisplayVariableOpen)
                                 return
                         } else {
                                 nestedOpeningCount--

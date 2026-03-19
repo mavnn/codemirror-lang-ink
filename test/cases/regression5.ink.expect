@@ -1,0 +1,4 @@
+Script(
+  ContentLine(InlineDisplayVariable(Name)),
+  BlockConditional(BlockConditionCase(ExpressionComparison(Name,Name)),ContentLine,BlockConditionCase(Name),ContentLine) 
+)

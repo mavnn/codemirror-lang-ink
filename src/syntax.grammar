@@ -167,11 +167,12 @@ ChoiceCondition { "{" ~bracket expression "}" }
 @external tokens checkBrace from "./tokens" {
   inlineConditionalOpen,
   inlineSequenceOpen,
+  inlineDisplayVariableOpen,
   blockOpen
 }
 
 inline {
-  Conditional | InlineSequence
+  Conditional | InlineSequence | InlineDisplayVariable
 }
 
 Conditional {
@@ -180,6 +181,9 @@ Conditional {
 BlockConditional {
   "{" ~bracket blockOpen conditionMarker? expression ":" (ContentLine | emptyLine) blockTail |
   "{" ~bracket endOfLine blockTail
+}
+InlineDisplayVariable {
+  "{" ~bracket inlineDisplayVariableOpen Name "}"
 }
 blockTail {
   (BlockConditionCase | ~case ContentLine | ~case choice | ~case VariableAssignment)*

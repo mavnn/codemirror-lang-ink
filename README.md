@@ -51,7 +51,7 @@ const highlightStyle = HighlightStyle.define( [
 const view = new EditorView({
   parent: document.body,
   doc: `Once upon a time...`,
-  extensions: [basicSetup, InkLanguageSupport()]
+  extensions: [basicSetup, InkLanguageSupport(), syntaxHighlighting(highlightStyle)]
 })
 ```
 

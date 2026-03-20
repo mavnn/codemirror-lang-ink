@@ -82,7 +82,7 @@ knotArgument { kw<"ref">? Name }
 StitchName { !parens identifier }
 Stitch { ~opening stitchMarker StitchName KnotArguments? stitchMarker? endOfLine line* (endOfKnotMarker | endOfStitchMarker) }
 Gather { ~opening (!keyword gatherMarker) BracketedGatherName? ContentLine }
-BracketedGatherName { openBracketedGatherName identifier ")" }
+BracketedGatherName { openBracketedGatherName Name ")" }
 
 // To avoid issues with dashes being "mis-tokenized" midline, we need
 // the gather marker at the line start to be an extension of the broader
@@ -155,7 +155,7 @@ choiceContentStart {
 }
 PreweaveChoiceContent { choiceContent (choiceContent | inline)* }
 PostweaveChoiceContent { (choiceContent | inline)+ }
-BracketedChoiceName { openBracketedChoiceName identifier ")" }
+BracketedChoiceName { openBracketedChoiceName Name ")" }
 WeaveBracket { openWeaveBracket WeaveContent ChoiceTag* "]" }
 WeaveContent { (choiceContent | inline)* }
 choiceContent {

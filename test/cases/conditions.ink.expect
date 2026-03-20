@@ -1,5 +1,5 @@
 Script(
-  OnceOnlyChoice(BracketedChoiceName,ChoiceCondition(Bool(true)),PreweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
+  OnceOnlyChoice(BracketedChoiceName(Name),ChoiceCondition(Bool(true)),PreweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
   OnceOnlyChoice(ChoiceCondition(ExpressionAndOr(Name,String)),WeaveBracket(WeaveContent),Divert(DivertArrow,DivertTarget(Path))),
   OnceOnlyChoice(ChoiceCondition(ExpressionAndOr(Name,ExpressionFunctionCall(Name,Int,String))),ChoiceCondition(ExpressionComparison(Name,Float)),WeaveBracket(WeaveContent),PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
   OnceOnlyChoice(PreweaveChoiceContent(InlineSequence(SequenceContent,Pipe,SequenceContent,Pipe,SequenceContent)),ChoiceTag)

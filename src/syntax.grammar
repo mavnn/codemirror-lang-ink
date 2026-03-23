@@ -48,6 +48,21 @@ line {
   emptyLine
 }
 
+blockLine {
+  AuthorWarning |
+  ContentLine |
+  VariableDeclaration |
+  ConstDeclaration |
+  ListDeclaration |
+  StackDeclaration |
+  VariableAssignment |
+  choice |
+  ThreadLine |
+  conditionalLine |
+  BlockSequence |
+  emptyLine
+}
+
 @skip { (spaces | BlockComment) }
 @context trackKnotName from "./context"
 
@@ -183,10 +198,10 @@ BlockConditional {
   "{" ~bracket endOfLine blockTail
 }
 InlineDisplayVariable {
-  "{" ~bracket inlineDisplayVariableOpen Name "}"
+  "{" ~bracket inlineDisplayVariableOpen Name ("(" commaSep<expression> ")")? "}"
 }
 blockTail {
-  (BlockConditionCase | ~case ContentLine | ~case choice | ~case VariableAssignment)*
+  (BlockConditionCase | ~case blockLine)*
   "}"
 }
 BlockConditionCase { caseOpener expression ":" (ContentLine | emptyLine) }

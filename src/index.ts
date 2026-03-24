@@ -86,6 +86,7 @@ export const InkLanguage = LRLanguage.define(
                                         RepeatingChoice: t.controlOperator,
                                         ChoiceCondition: t.controlOperator,
                                         BlockConditionCase: t.controlOperator,
+                                        BlockSequenceItem: t.controlOperator,
 
 
                                         // Sections

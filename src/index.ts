@@ -81,6 +81,7 @@ export const InkLanguage = LRLanguage.define(
                                         Pipe: t.separator,
                                         Gather: t.controlOperator,
                                         DivertArrow: t.controlOperator,
+                                        TunnelReturn: t.controlOperator,
                                         OnceOnlyChoice: t.controlOperator,
                                         RepeatingChoice: t.controlOperator,
                                         ChoiceCondition: t.controlOperator,

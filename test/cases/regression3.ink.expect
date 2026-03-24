@@ -1,1 +1,13 @@
-Script(Knot(KnotName,ContentLine,VariableAssignment(Name,Adjust(List(ListMember,ListMember))),ContentLine(Divert(DivertArrow))),Knot(KnotName,ContentLine,ContentLine(Divert(DivertArrow))))
+Script(
+  Knot(
+    KnotName,
+    ContentLine,
+    VariableAssignment(Name,Adjust(List(ListMember,ListMember))),
+    ContentLine(Divert(TunnelReturn))
+  ),
+  Knot(
+    KnotName,
+    ContentLine,
+    ContentLine(Divert(TunnelReturn))
+  )
+)

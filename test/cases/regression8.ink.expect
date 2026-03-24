@@ -1,0 +1,1 @@
+Script(ContentLine,OnceOnlyChoice(WeaveBracket(WeaveContent)),OnceOnlyChoice(WeaveBracket(WeaveContent)),Gather,ContentLine,OnceOnlyChoice(WeaveBracket(WeaveContent)),OnceOnlyChoice(WeaveBracket(WeaveContent)), Gather(ContentLine))

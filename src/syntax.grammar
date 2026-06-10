@@ -197,7 +197,7 @@ Conditional {
 }
 BlockConditional {
   "{" ~bracket blockOpen conditionMarker? expression ":" (eol | LineComment | ContentLine (eol | LineComment)) blockTail |
-  "{" ~bracket endOfLine blockTail
+  "{" ~bracket endOfLine+ blockTail
 }
 InlineDisplayVariable {
   "{" ~bracket inlineDisplayVariableOpen Name ("(" commaSep<expression> ")")? "}"

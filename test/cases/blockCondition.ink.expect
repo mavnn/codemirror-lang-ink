@@ -12,5 +12,8 @@ Script(
     ContentLine,
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
     BlockConditionCase(Name, ContentLine)
-  )
+  ),
+  BlockConditional(LineComment,
+  BlockConditionCase(ExpressionComparison(Name,Name)),
+  ContentLine(Divert(TunnelReturn)))
 )

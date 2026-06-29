@@ -1,3 +1,12 @@
+{
+- wait:
+    What's that?! #emote fear #animation shake
+
+    Oh. Phew. It's just Moget the cat.
+
+- else:
+    Moget, you clumsy cat! What a mess! #emote rage  #animation shake
+}
 { firstBlock:
     Some stuff here
     -> other_place

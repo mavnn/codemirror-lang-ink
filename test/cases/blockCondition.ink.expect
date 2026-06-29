@@ -1,6 +1,13 @@
 Script(
   BlockConditional(
-    Name,
+    BlockConditionCase(Name),
+    ContentLine(Tag,Tag),
+    ContentLine,
+    BlockConditionCase(Name),
+    ContentLine(Tag,Tag)
+  ),
+  BlockConditional(
+    BlockConditionCase(Name),
     ContentLine,
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
     BlockConditionCase(Name),

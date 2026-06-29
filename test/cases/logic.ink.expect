@@ -1,6 +1,6 @@
 Script(
   BlockConditional(
-    Name,
+    BlockConditionCase(Name),
     ContentLine,
     BlockConditionCase(Name),
     ContentLine

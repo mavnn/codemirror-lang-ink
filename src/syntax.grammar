@@ -196,16 +196,17 @@ Conditional {
    "{" ~bracket inlineConditionalOpen conditionMarker? expression ":" content+ Divert? "}"
 }
 BlockConditional {
-  "{" ~bracket blockOpen conditionMarker? expression ":" (eol | LineComment | ContentLine (eol | LineComment)) blockTail |
+  "{" ~bracket blockOpen conditionMarker? BlockConditionCase blockTail |
   "{" ~bracket endOfLine+ blockTail
 }
 InlineDisplayVariable {
   "{" ~bracket inlineDisplayVariableOpen Name ("(" commaSep<expression> ")")? "}"
 }
 blockTail {
-  ((BlockConditionCase | blockLine) endOfLine)+ "}"
+  (blockConditionCaseLine | blockLine endOfLine+)+ "}"
 }
-BlockConditionCase { caseOpener expression ":" ContentLine? }
+BlockConditionCase { expression ":" ContentLine? endOfLine+ }
+blockConditionCaseLine { caseOpener BlockConditionCase }
 caseOpener[@dynamicPrecedence=1] { ~opener opener<"-"> }
 conditionalLine { !keyword BlockConditional }
 

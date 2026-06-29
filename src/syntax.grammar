@@ -1,6 +1,6 @@
 @dialects { visualink }
 
-@top Script { LineComment? lineSep<context> }
+@top Script { endOfLine* lineSep<context> }
 
 @precedence {
   restrictedPath @left,

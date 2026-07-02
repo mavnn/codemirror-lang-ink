@@ -1,0 +1,6 @@
+Script(
+  BlockConditional(BlockConditionCase(Path),
+  ContentLine,
+  "-",BlockConditionCase(Name),
+  ContentLine)
+)

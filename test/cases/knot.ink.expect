@@ -1,6 +1,6 @@
 Script(
-  Knot(KnotName),
+  Knot(KnotName,ContentLine(Divert(DivertArrow,DivertTarget(END)))),
   Knot(KnotName, ContentLine),
-  Knot(KnotName, KnotArguments(ref, Name, Name), Stitch(StitchName)),
-  Function(function,KnotName,KnotArguments(Name))
+  Knot(KnotName, KnotArguments(ref, Name, Name), Stitch(StitchName, ContentLine)),
+  Function(function,KnotName,KnotArguments(Name), VariableAssignment(Return, ExpressionAdd(Name, Name)))
 )

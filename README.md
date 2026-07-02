@@ -57,6 +57,21 @@ const view = new EditorView({
 
 The class names above come from the Bulma css library.
 
+## Token groups
+
+Many tokens have been assigned groups, which you can check if you are accessing the parsed Lezer tree directly.
+
+The groups in use are:
+
+- Comment
+- Text
+- Literal
+- Tags
+- Names
+- Operator
+- Keyword
+- Divert
+
 ## Tests
 
 If you find an issue with the grammar (incorrect highlighting boundaries, etc) please include

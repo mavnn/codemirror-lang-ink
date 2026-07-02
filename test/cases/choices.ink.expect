@@ -1,11 +1,11 @@
 Script(
-  OnceOnlyChoice(
-    PreweaveChoiceContent,
-    Divert(DivertArrow, DivertTarget(Path))
-  ),
+  OnceOnlyChoice(PreweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
   OnceOnlyChoice(WeaveBracket(WeaveContent)),
   ContentLine,
-  Gather(BracketedGatherName(Name)),
-  OnceOnlyChoice(PreweaveChoiceContent, WeaveBracket(WeaveContent), PostweaveChoiceContent, Divert(DivertArrow,DivertTarget(Path))),
-  OnceOnlyChoice(PreweaveChoiceContent, WeaveBracket(WeaveContent), PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path)))
+  Gather("---",BracketedGatherName(Name)),
+  OnceOnlyChoice(PreweaveChoiceContent, WeaveBracket(WeaveContent), PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
+  OnceOnlyChoice(PreweaveChoiceContent,WeaveBracket(WeaveContent),PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
+  OnceOnlyChoice(PreweaveChoiceContent,WeaveBracket(WeaveContent),PostweaveChoiceContent),
+  VariableAssignment(Name,Name),
+  Gather(BracketedGatherName(Name), ContentLine)
 )

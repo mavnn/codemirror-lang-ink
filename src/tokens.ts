@@ -6,14 +6,16 @@ import { inlineConditionalOpen, inlineSequenceOpen, inlineDisplayVariableOpen, b
 const pipe = 124, colon = 58, braceL = 123, braceR = 125, newLine = 10, equal = 61
 
 export const endOfKnot = new ExternalTokenizer((input, stack) => {
+  let prev = input.peek(-1)
+  if (prev != -1 && prev != newLine) { return }
   const doubleEquals = input.peek(0) == equal && input.peek(1) == equal
   const endOfFile = input.peek(0) == -1
-  if(stack.context.inKnot && (doubleEquals || endOfFile)) {
-    input.acceptToken(endOfKnotMarker)
+  if(stack.context.inStitch && (endOfFile || input.peek(0) == equal)) {
+    input.acceptToken(endOfStitchMarker)
     return
   }
-  if(stack.context.inStitch && input.peek(0) == equal) {
-    input.acceptToken(endOfStitchMarker)
+  if(stack.context.inKnot && !stack.context.inStitch && (doubleEquals || endOfFile)) {
+    input.acceptToken(endOfKnotMarker)
     return
   }
 }, {contextual: true})

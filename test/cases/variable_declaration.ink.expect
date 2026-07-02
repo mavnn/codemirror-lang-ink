@@ -1,7 +1,7 @@
 Script(
-  VariableDeclaration(Name, Int),
-  ConstDeclaration(Name, List(ListMember, ListMember)),
+  VariableDeclaration(VAR, Name, Int),
+  ConstDeclaration(CONST, Name, List(ListMember, ListMember)),
   ContentLine(Divert(DivertArrow, DivertTarget(END))),
-  ListDeclaration(Name, ListDefinition(Name, SelectedName, Name)),
-  ListDeclaration(Name,ListDefinition(Name,Name))
+  ListDeclaration(LIST, Name, ListDefinition(Name, SelectedName, Name)),
+  ListDeclaration(LIST, Name,ListDefinition(Name,Name))
 )

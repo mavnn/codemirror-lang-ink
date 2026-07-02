@@ -1,7 +1,7 @@
 import { ContextTracker } from "@lezer/lr"
 
 // @ts-ignore-next "The terms file is generated during the grammar build process"
-import { KnotName, StitchName } from "./generated/parser.terms"
+import { KnotName, StitchName, endOfKnotMarker, endOfStitchMarker } from "./generated/parser.terms"
 
 export class KnotContext {
   constructor(public inKnot: boolean, public inStitch: boolean) {
@@ -19,4 +19,13 @@ export const trackKnotName = new ContextTracker({
       return context
     }
   },
+  shift(context, term) {
+    if (term == endOfStitchMarker) {
+      return new KnotContext(true, false)
+    } else if (term == endOfKnotMarker) {
+      return new KnotContext(false, false)
+    } else {
+      return context
+    }
+  }
 })

@@ -1,0 +1,1 @@
+Script(ContentLine,Gather("-",BlockConditional(BlockConditionCase(ExpressionNot(not,Name)),ContentLine,"-",BlockConditionCase(Name),ContentLine)))

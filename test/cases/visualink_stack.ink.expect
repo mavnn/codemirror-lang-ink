@@ -1,8 +1,8 @@
 Script(
   LineComment,
-  StackDeclaration(Name,Int,Bool(false)),
-  StackDeclaration(Name,Int,String),
+  StackDeclaration(STACK, Name,Int,Bool(false)),
+  StackDeclaration(STACK, Name,Int,String),
   ContentLine,
   LineComment,
-  VariableDeclaration(Name, Stack(Int,String))
+  VariableDeclaration(VAR, Name, Stack(Int,String))
 )

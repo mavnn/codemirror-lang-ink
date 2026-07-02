@@ -1,0 +1,8 @@
+Script(
+  Knot(
+    KnotName,
+    ContentLine,
+    Stitch(StitchName,ContentLine,ContentLine(Divert(DivertArrow,DivertTarget(Path)))),
+    Stitch(StitchName,ContentLine)
+  )
+)

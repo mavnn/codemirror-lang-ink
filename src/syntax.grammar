@@ -115,10 +115,10 @@ gatherMarker[@dynamicPrecedence=2] {
 
 // Declarations
 VariableDeclaration[group="Keyword"] {
-  ~opening !keyword opener<"VAR"> Name "=" (literal | List | ExpressionDivertTarget | Stack)
+  ~opening !keyword opener<"VAR"> Name "=" (literal | ListMember | List | ExpressionDivertTarget | Stack)
 }
 ConstDeclaration {
-  ~opening !keyword opener<"CONST"> Name "=" (literal | List | ExpressionDivertTarget | Stack)
+  ~opening !keyword opener<"CONST"> Name "=" (literal | ListMember | List | ExpressionDivertTarget | Stack)
 }
 ListDeclaration {
   ~opening !keyword opener<"LIST"> Name "=" endOfLine? ListDefinition

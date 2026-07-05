@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { NodeProp, TreeFragment } from "@lezer/common"
 import { InkLanguage } from "../dist/index.js"
 import * as fs from "node:fs"

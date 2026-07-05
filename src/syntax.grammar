@@ -229,8 +229,8 @@ InlineSequence[group="Operator"] {
 SequenceContent[group="Text"] { content* Divert? }
 
 // Tags
-Tag[group="Tags"] { "#" openTagContent+  }
-ChoiceTag[group="Tags"] { "#" (choiceTagContent | choiceTagNotDivert)+ }
+Tag[group="Tags"] { "#" openTagContent+ (inline openTagContent*)*  }
+ChoiceTag[group="Tags"] { "#" (choiceTagContent | choiceTagNotDivert)+ (inline (choiceTagContent | choiceTagNotDivert)*)* }
 
 // Threads
 ThreadLine[group="Operator"] { !keyword threadArrow DivertTarget }
@@ -345,13 +345,13 @@ endOfLine { LineComment | eol }
 
   choiceContentChar { ![\n\r \t{}#\\|[\](] }
   choiceContentWord { "(" | "[" | choiceContentChar+ }
-  choiceTagContent { ![\n\r#\[\]-] }
+  choiceTagContent { ![\n\r#\[\]{-] }
   choiceTagNotDivert { "-" ![>] }
 
   onceOnlyChoiceMarker { "*"+ }
   repeatingChoiceMarker { "+"+ }
 
-  openTagContent { ![\n\r#] }
+  openTagContent { ![\n\r#{] }
 
   int { @digit+ }
   float { @digit+ "." @digit* }
@@ -392,4 +392,5 @@ endOfLine { LineComment | eol }
   @precedence { onceOnlyChoiceMarker, repeatingChoiceMarker, contentWord }
   @precedence { onceOnlyChoiceMarker, repeatingChoiceMarker, choiceContentWord }
   @precedence { threadArrow, contentWord }
+  @precedence { openTagContent, "]" }
 }

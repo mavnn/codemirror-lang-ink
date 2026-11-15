@@ -1,1 +1,5 @@
-Script(ListDeclaration(LIST,Name,ListDefinition(Name,SelectedName)),ContentLine, ContentLine)
+Script(
+  ListDeclaration(LIST,Name,ListDefinition(Name,SelectedName)),
+  ContentLine(Tag),
+  ContentLine
+)

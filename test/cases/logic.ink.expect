@@ -11,5 +11,6 @@ Script(
     ContentLine(Divert(DivertArrow,DivertTarget(Path))),
     BlockConditionCase(Name),
     ContentLine
-  )
+  ),
+  BlockConditional(BlockConditionCase(ExpressionAndOr(Name,Name)),ContentLine)
 )

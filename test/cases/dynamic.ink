@@ -4,3 +4,5 @@ How about {& -> out| -> in} followed by...
 Nested {dynamics|{~like this|or that}}
 I took a step forward. {!||||Then the lights went out. -> eek}
 If I've seen Bob {bob: I'll know him}
+{ 2 * 3 + 5 * 6 }
+Hello {"world"}

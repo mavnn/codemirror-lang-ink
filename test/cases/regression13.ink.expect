@@ -1,0 +1,15 @@
+Script(
+  Knot(
+    KnotName,
+    ContentLine,
+    OnceOnlyChoice(WeaveBracket(WeaveContent),Divert(DivertArrow,DivertTarget(Path),Divert(DivertArrow))),
+    OnceOnlyChoice(WeaveBracket(WeaveContent)),
+    Gather("-"),
+    ContentLine,
+    OnceOnlyChoice(WeaveBracket(WeaveContent)),
+    OnceOnlyChoice(WeaveBracket(WeaveContent),Divert(DivertArrow,DivertTarget(Path),Divert(DivertArrow))),
+    Gather("-"),
+    ContentLine(InlineDisplayVariable(Name)),
+    ContentLine(Divert(DivertArrow,DivertTarget(END)))
+  )
+)

@@ -12,3 +12,7 @@ Then
   - variable:
     Otherwise
 }
+
+{ one || other:
+  Some text here
+}

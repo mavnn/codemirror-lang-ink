@@ -3,5 +3,7 @@ Script(
   VariableAssignment(Temp,Name,Stack(Name,Name)),
   VariableAssignment(Name,IncDec),
   ContentLine(Tag),
-  VariableAssignment(Name,ExpressionSubtract(Int,Int))
+  VariableAssignment(Name,ExpressionSubtract(Int,Int)),
+  VariableAssignment(Name,ExpressionSubtract(ExpressionNegation,Int)),
+  VariableAssignment(Name,Adjust(Int))
 )

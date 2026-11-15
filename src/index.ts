@@ -109,7 +109,8 @@ export const InkLanguage = LRLanguage.define(
                                         ExpressionMultiply: t.arithmeticOperator,
                                         ExpressionDivide: t.arithmeticOperator,
                                         ExpressionNot: t.logicOperator,
-                                        "=": t.operator
+                                        "=": t.operator,
+                                        "-": t.operatorKeyword
                                 })
                         ]
                 }), languageData: { commentTokens: { line: "//", block: { open: "/*", close: "*/" } } }

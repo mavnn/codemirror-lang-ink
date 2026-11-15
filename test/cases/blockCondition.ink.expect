@@ -1,5 +1,6 @@
 Script(
   BlockConditional(
+    "-",
     BlockConditionCase(Name),
     ContentLine(Tag,Tag),
     ContentLine,
@@ -22,5 +23,6 @@ Script(
   ),
   BlockConditional(LineComment,
   BlockConditionCase(ExpressionComparison(Name,Name)),
-  ContentLine(Divert(TunnelReturn)))
+  ContentLine(Divert(TunnelReturn))),
+  BlockConditional(BlockConditionCase(ExpressionPresence(Name,Name)),ContentLine(Glue),VariableAssignment(Name,Adjust(Name)),VariableAssignment(Name,Adjust(Name)),"-",BlockConditionCase(Name),ContentLine(Conditional(ExpressionPresence(Name,Name),ConditionalContent(Glue)),Conditional(ExpressionPresence(Name,Name),ConditionalContent(Glue))),VariableAssignment(Name,Adjust(Name)),VariableAssignment(Name,Adjust(Name)))
 )

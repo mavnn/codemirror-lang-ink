@@ -2,5 +2,5 @@ Script(
   Knot(KnotName,ContentLine(Divert(DivertArrow,DivertTarget(END)))),
   Knot(KnotName, ContentLine),
   Knot(KnotName, KnotArguments(ref, Name, Name), Stitch(StitchName, ContentLine)),
-  Function(function,KnotName,KnotArguments(Name), VariableAssignment(Return, ExpressionAdd(Name, Name)))
+  Function(function,KnotName,KnotArguments(ExpressionDivertTarget(DivertTarget(Path))), VariableAssignment(Return, ExpressionAdd(Name, Name)))
 )

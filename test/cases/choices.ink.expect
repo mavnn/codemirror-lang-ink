@@ -7,5 +7,11 @@ Script(
   OnceOnlyChoice(PreweaveChoiceContent,WeaveBracket(WeaveContent),PostweaveChoiceContent,Divert(DivertArrow,DivertTarget(Path))),
   OnceOnlyChoice(PreweaveChoiceContent,WeaveBracket(WeaveContent),PostweaveChoiceContent),
   VariableAssignment(Name,Name),
-  Gather(BracketedGatherName(Name), ContentLine)
+  Gather(BracketedGatherName(Name), ContentLine),
+  OnceOnlyChoice(Divert(DivertArrow,DivertTarget(END))),
+  OnceOnlyChoice(ChoiceCondition(ExpressionNot(ExpressionParen(ExpressionPresence(Name,Name)))),WeaveBracket(WeaveContent)),ContentLine,VariableAssignment(Name,Name),
+  RepeatingChoice(ChoiceCondition(ExpressionAndOr(Name,Name)),WeaveBracket(WeaveContent)),
+  RepeatingChoice(PreweaveChoiceContent(InlineSequence(SequenceContent,Pipe,SequenceContent)),WeaveBracket(WeaveContent)),
+  RepeatingChoice(PreweaveChoiceContent(InlineDisplayVariable(Name)),WeaveBracket(WeaveContent)),
+  RepeatingChoice(ChoiceCondition(FunctionCall(Name)),WeaveBracket(WeaveContent))
 )

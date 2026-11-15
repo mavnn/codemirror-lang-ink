@@ -1,0 +1,1 @@
+~ SEED_RANDOM(1)

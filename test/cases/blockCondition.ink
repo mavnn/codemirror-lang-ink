@@ -25,3 +25,12 @@ Hello
 - enemy_health <= dead:
   ->->
 }
+{ bedroomLightState ? on:
+    <> The bulb fell dark.
+    ~ bedroomLightState += off
+    ~ bedroomLightState -= on
+- else:
+    { bedroomLightState ? on_floor: <> A little light spilled under the bed.} { bedroomLightState ? on_desk : <> The light gleamed on the polished tabletop. }
+    ~ bedroomLightState -= off
+    ~ bedroomLightState += on
+}
